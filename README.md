@@ -1,5 +1,9 @@
 # Fish-MLBContractsAPI
 
-./gradlew build -> Build API structure
-./gradlew run -> Run API
-./gradlew run --args="init" -> Initialize Database & Run API
+## Gradle Commands
+### build
+- Builds API structure
+### run
+- Run API
+### run --args="init"
+- Initialize Database & Run API
