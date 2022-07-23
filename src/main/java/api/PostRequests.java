@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
 
+import model.Team;
 import scraper.RootScraper;
 import scraper.SpotracScraper;
 
@@ -19,11 +20,16 @@ public class PostRequests {
 
     public void request() {
         // getTeamUrls
+        System.out.println("Getting Team URLs");
         List<SpotracScraper> teamScrapers = this.rootScraper.scrapeTableForSubLinks();
 
         // getTeamInfo
+        System.out.println("Getting Team Info");
+        List<Team> teamInfo = new ArrayList<>();
+        teamScrapers.forEach(teamScraper -> teamInfo.add((Team) teamScraper.getInfo()));
 
         // getPlayerUrls
+        System.out.println("Getting Player URLs");
         List<SpotracScraper> playerScrapers = new ArrayList<>();
         teamScrapers.forEach(teamScraper -> playerScrapers.addAll(teamScraper.scrapeTableForSubLinks()));
 
