@@ -10,7 +10,7 @@ public class Player implements ModelElement {
     private double serviceTime;
     private boolean active;
 
-    public Player(String playerID, String lastName, String firstName, String position, String teamID, int age, double serviceTeam, boolean active) {
+    public Player(String playerID, String lastName, String firstName, String position, String teamID, int age, double serviceTime, boolean active) {
             this.playerID = playerID;
             this.lastName = lastName;
             this.firstName = firstName;
