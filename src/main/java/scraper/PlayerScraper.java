@@ -10,6 +10,8 @@ import model.Player;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import org.jsoup.nodes.Element;
+
 public class PlayerScraper extends SpotracScraper {
     private String teamID;
     private String playerID;
