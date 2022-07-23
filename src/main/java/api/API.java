@@ -6,14 +6,17 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
 
+import scraper.SpotracUrls;
+
 public class API {
     public static void main(String[] args) throws ClassNotFoundException, IOException, SQLException {
         Connection connection = connectSQL();
-        PostRequests.setup();
-        if (args.length > 0 && args[0].equals("init")) {
-            PostRequests.scrapeForData(connection);
-        }
-        GetRequests.setup();
+        PostRequests postRequests = new PostRequests(SpotracUrls.rootUrl, connection);
+        // PostRequests.setup();
+        // if (args.length > 0 && args[0].equals("init")) {
+        //     PostRequests.scrapeForData(connection);
+        // }
+        // GetRequests.setup();
     }
 
     public static Connection connectSQL() throws ClassNotFoundException, SQLException {

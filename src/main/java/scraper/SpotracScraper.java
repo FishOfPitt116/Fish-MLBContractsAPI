@@ -1,31 +1,21 @@
 package scraper;
 
-import java.io.IOException;
 import java.util.List;
-import java.util.stream.Collectors;
 
-import org.jsoup.Jsoup;
+import model.ModelElement;
 
-public class SpotracScraper {
+public abstract class SpotracScraper {
+    private String url;
 
-    public static List<String> getTeamLinks() throws IOException {
-        return Jsoup.connect(SpotracUrls.rootUrl).get()
-            .selectFirst(".teams")
-            .selectFirst("tbody")
-            .select("tr")
-            .select("a")
-            .stream().map(teamLinkElement -> {
-                return teamLinkElement.attr("href");
-            }).collect(Collectors.toList());
+    public SpotracScraper(String url) {
+        this.url = url;
     }
 
-    public static List<String> getPlayerLinks(String teamUrl) throws IOException {
-        return Jsoup.connect(teamUrl).get()
-            .select(".teams")
-            .select("td.player")
-            .select("a")
-            .stream().map(playerLinkElement -> {
-                return playerLinkElement.attr("href");
-            }).collect(Collectors.toList());
+    public String getUrl() {
+        return this.url;
     }
+
+    public abstract List<SpotracScraper> scrapeTableForSubLinks();
+
+    public abstract ModelElement getInfo();
 }

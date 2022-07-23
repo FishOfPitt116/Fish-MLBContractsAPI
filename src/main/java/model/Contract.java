@@ -2,7 +2,7 @@ package model;
 
 import java.util.List;
 
-public class Contract {
+public class Contract implements ModelElement {
     private String contractID;
     private String playerID;
     private String teamID;

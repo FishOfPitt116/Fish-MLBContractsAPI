@@ -1,6 +1,6 @@
 package model;
 
-public class Team {
+public class Team implements ModelElement {
     private String teamID;
     private String city;
     private String name;
