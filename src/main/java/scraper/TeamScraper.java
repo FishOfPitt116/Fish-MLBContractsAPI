@@ -29,6 +29,7 @@ public class TeamScraper extends SpotracScraper {
             .select("tr")
             .select("a")
             .stream().map(teamLinkElement -> {
+                System.out.println(teamLinkElement.attr("href"));
                 return new PlayerScraper(teamLinkElement.attr("href"), this.teamID);
             }).collect(Collectors.toList());
     }

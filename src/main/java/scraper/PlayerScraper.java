@@ -61,7 +61,11 @@ public class PlayerScraper extends SpotracScraper {
             return null;
         }
         Element serviceTimeElement = serviceTimeElementHeader.get().nextElementSibling();
-        double serviceTime = Double.parseDouble(serviceTimeElement.text().split(" ")[0]);
+        String serviceTimeText = serviceTimeElement.text().split(" ")[0];
+        double serviceTime = 0;
+        if (!serviceTimeText.contains("Years")) {
+            serviceTime = Double.parseDouble(serviceTimeText);
+        }
 
         return new Player(
             this.playerID, 
