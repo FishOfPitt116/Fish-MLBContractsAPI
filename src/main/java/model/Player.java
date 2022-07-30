@@ -52,4 +52,16 @@ public class Player implements ModelElement {
     public boolean getActive() {
         return this.active;
     }
+
+    public String toString() {
+        return String.format("Player Object: {\n\tID: %s,\n\tlastName: %s,\n\tfirstName: %s,\n\tposition: %s,\n\tteamID: %s,\n\tage: %s,\n\tserviceTime: %s,\n\tisActive: %s\n}",
+            this.playerID,
+            this.lastName,
+            this.firstName,
+            this.position,
+            this.teamID,
+            this.age,
+            this.serviceTime,
+            this.active);
+    }
 }

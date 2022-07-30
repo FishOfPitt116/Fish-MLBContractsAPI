@@ -4,7 +4,9 @@ import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
 
+import model.Player;
 import model.Team;
+
 import scraper.RootScraper;
 import scraper.SpotracScraper;
 
@@ -21,12 +23,17 @@ public class PostRequests {
     public void request() {
         // getTeamUrls
         System.out.println("Getting Team URLs");
+        
         List<SpotracScraper> teamScrapers = this.rootScraper.scrapeTableForSubLinks();
 
         // getTeamInfo
         System.out.println("Getting Team Info");
         List<Team> teamInfo = new ArrayList<>();
-        teamScrapers.forEach(teamScraper -> teamInfo.add((Team) teamScraper.getInfo()));
+        teamScrapers.forEach(teamScraper -> {
+            Team team = (Team) teamScraper.getInfo();
+            System.out.println(team);
+            teamInfo.add(team);
+        });
 
         // getPlayerUrls
         System.out.println("Getting Player URLs");
@@ -34,6 +41,13 @@ public class PostRequests {
         teamScrapers.forEach(teamScraper -> playerScrapers.addAll(teamScraper.scrapeTableForSubLinks()));
 
         // getPlayerInfo
+        System.out.println("Getting Player Info");
+        List<Player> playerInfo = new ArrayList<>();
+        playerScrapers.forEach(playerScraper -> {
+            Player player = (Player) playerScraper.getInfo();
+            System.out.println(player);   
+            playerInfo.add((Player) playerScraper.getInfo());
+        });
 
         // getContractInfo
 

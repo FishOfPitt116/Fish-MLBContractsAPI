@@ -19,7 +19,6 @@ public class PlayerScraper extends SpotracScraper {
     public PlayerScraper(String url, String teamID) {
         super(url);
         this.teamID = teamID;
-        System.out.println(super.getDocument().location());
         this.playerID = super.getDocument().location().split("/")
             [super.getDocument().location().split("/").length-1];
     }
@@ -51,7 +50,7 @@ public class PlayerScraper extends SpotracScraper {
             return null;
         }
         Element ageElement = ageElementHeader.get().nextElementSibling();
-        String ageStr = ageElement.text().replaceAll("\\s+","");
+        String ageStr = ageElement.text().replaceAll("\\s+","").replace("-", ".");
         double ageDouble = Double.parseDouble(ageStr.substring(0, ageStr.length()-1));
         int age = (int) ageDouble;
 
@@ -68,7 +67,7 @@ public class PlayerScraper extends SpotracScraper {
             this.playerID, 
             lastName,
             firstName,
-            null,
+            null, // implement PositionScraper
             this.teamID,
             age,
             serviceTime,

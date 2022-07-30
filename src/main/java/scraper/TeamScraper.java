@@ -1,6 +1,9 @@
 package scraper;
 
+import java.text.NumberFormat;
+import java.text.ParseException;
 import java.util.List;
+import java.util.Locale;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -41,11 +44,21 @@ public class TeamScraper extends SpotracScraper {
         String city = content[2];
         String name = content[3];
 
-        int payroll = 0; // implement
-        return new Team(
-            this.teamID,
-            city,
-            name,
-            payroll);
+        Element payrollElement = super.getDocument().select("span")
+            .stream().filter(spanEle -> spanEle.text().contains("Total Payroll:")).findFirst()
+            .get();
+        String payrollText = payrollElement.parent().selectFirst("strong").text();
+        try {
+            int payroll = NumberFormat.getNumberInstance(Locale.US).parse(payrollText.substring(1)).intValue();
+            return new Team(
+                this.teamID,
+                city,
+                name,
+                payroll);
+        } catch (ParseException e) {
+            e.printStackTrace();
+            System.exit(0);
+        }
+        return null;
     }
 }

@@ -28,4 +28,12 @@ public class Team implements ModelElement {
     public int getPayroll() {
         return this.payroll;
     }
+
+    public String toString() {
+        return String.format("Team Object: {\n\tID: %s\n\tCity: %s\n\tName: %s\n\tPayroll: %s\n}",
+            this.teamID,
+            this.city,
+            this.name,
+            this.payroll);
+    }
 }
