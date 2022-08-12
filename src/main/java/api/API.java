@@ -15,7 +15,11 @@ public class API {
         if (args.length > 0 && args[0].equals("init")) {
             postRequests.request();
         }
-        // GetRequests.setup();
+        if (args.length > 0 && args[0].equals("test")) {
+            Test.test();
+        }
+        GetRequests getRequests = new GetRequests(connection);
+        getRequests.setup();
     }
 
     public static Connection connectSQL() throws ClassNotFoundException, SQLException {
